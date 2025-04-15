@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import '../models/question.dart';
 import '../services/api_service.dart';
+import 'package:html_unescape/html_unescape.dart';
+final unescape = HtmlUnescape();
+
 
 class QuizScreen extends StatefulWidget {
   @override
@@ -91,7 +94,7 @@ class _QuizScreenState extends State<QuizScreen> {
               style: TextStyle(fontSize: 20),
             ),
             SizedBox(height: 16),
-            Text(question.question, style: TextStyle(fontSize: 18)),
+            Text(unescape.convert(question.question), style: TextStyle(fontSize: 18)),
             SizedBox(height: 16),
             ...question.options.map((option) => _buildOptionButton(option)),
             SizedBox(height: 20),
